@@ -8,8 +8,276 @@
     <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/4365/4365934.png">
     <meta name="theme-color" content="#2c3e50">
     <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: #3498db;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+            color: #3498db;
+            transform: translateY(-2px);
+        }
+
+        main {
+            margin-top: 100px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .project-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            padding: 0 20px;
+        }
+
+        .footer-section {
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: #3498db;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .footer-section p {
+            line-height: 1.6;
+            color: #bdc3c7;
+            font-size: 14px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            background: rgba(255,255,255,0.1);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #3498db;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            color: #bdc3c7;
+        }
+
+        .pwa-install-card {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+            position: relative;
+            overflow: hidden;
+            grid-column: 1 / -1;
+        }
+
+        .pwa-install-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            transform: rotate(45deg);
+        }
+
+        .pwa-install-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .pwa-install-text h3 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .pwa-install-text p {
+            color: rgba(255,255,255,0.8);
+            font-size: 16px;
+        }
+
+        .pwa-install-button {
+            background: white;
+            color: #2c3e50;
+            padding: 12px 30px;
+            border-radius: 25px;
+            border: none;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pwa-install-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .pwa-install-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .pwa-install-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -46,16 +314,30 @@
             </div>
             <div class="footer-section">
                 <h3>Contact Info</h3>
-                <p><i class="fas fa-envelope"></i> contact@oriby.com</p>
-                <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+                <p><i class="fas fa-envelope"></i> oribycode@gmail.com</p>
+                <p><i class="fas fa-phone"></i> 09636068890</p>
             </div>
             <div class="footer-section">
                 <h3>Follow Us</h3>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://facebook.com/oribycode" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/oribycode" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com/oribycode" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com/in/oribycode" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <!-- PWA Install Card -->
+            <div class="pwa-install-card">
+                <div class="pwa-install-content">
+                    <div class="pwa-install-text">
+                        <h3>Install Our App</h3>
+                        <p>Get quick access to our portfolio right from your device's home screen!</p>
+                    </div>
+                    <button class="pwa-install-button" id="pwaInstallButton">
+                        <i class="fas fa-download"></i>
+                        Install Now
+                    </button>
                 </div>
             </div>
         </div>
@@ -64,11 +346,108 @@
         </div>
     </footer>
 
-    <button id="installButton">
-        <i class="fas fa-download"></i>
-        Install App
-    </button>
+    <script>
+        // Project data and functionality
+        const projects = [
+            {
+                title: "Live Code Editor",
+                description: "Online code editor with live preview functionality",
+                image: "https://placehold.co/600x400?text=Code+Editor",
+                url: "https://sultanarabi161.github.io/live-server-/projects/code-editor.html"
+            },
+            {
+                title: "Quran",
+                description: "Digital Quran application with various features",
+                image: "https://placehold.co/600x400?text=Quran",
+                url: "https://bookmarks-web.netlify.app/projects/quran.com/"
+            },
+            {
+                title: "FM Radio",
+                description: "Online FM radio streaming application",
+                image: "https://placehold.co/600x400?text=FM+Radio",
+                url: "https://bookmarks-web.netlify.app/projects/orbify-fm/"
+            },
+            {
+                title: "M3U8 Player",
+                description: "Stream player for M3U8 format",
+                image: "https://placehold.co/600x400?text=M3U8+Player",
+                url: "https://bookmarks-web.netlify.app/projects/m3u_player/"
+            }
+        ];
 
-    <script src="script.js"></script>
+        function createProjectCards() {
+            const projectsGrid = document.querySelector('.projects-grid');
+            
+            projects.forEach(project => {
+                const card = document.createElement('a');
+                card.className = 'project-card';
+                card.href = project.url;
+                card.target = "_blank";
+                
+                card.innerHTML = `
+                    <img src="${project.image}" alt="${project.title}" class="project-image">
+                    <div class="project-info">
+                        <h3 class="project-title">${project.title}</h3>
+                        <p class="project-description">${project.description}</p>
+                    </div>
+                `;
+                
+                projectsGrid.appendChild(card);
+            });
+        }
+
+        // PWA Install Logic
+        let deferredPrompt;
+        const pwaInstallButton = document.getElementById('pwaInstallButton');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            pwaInstallButton.style.display = 'flex';
+        });
+
+        pwaInstallButton.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    console.log('App installed');
+                }
+                deferredPrompt = null;
+            }
+        });
+
+        window.addEventListener('appinstalled', () => {
+            console.log('PWA installed');
+        });
+
+        // Initialize project cards
+        document.addEventListener('DOMContentLoaded', () => {
+            createProjectCards();
+        });
+
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    registration.update();
+                    
+                    if (registration.active) {
+                        registration.addEventListener('updatefound', () => {
+                            if (registration.installing) {
+                                registration.installing.addEventListener('statechange', () => {
+                                    if (registration.waiting) {
+                                        registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+                                    }
+                                });
+                            }
+                        });
+                    }
+                }).catch(error => {
+                    console.log('ServiceWorker registration failed:', error);
+                });
+            });
+        }
+    </script>
 </body>
 </html>
