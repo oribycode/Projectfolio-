@@ -4,12 +4,23 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('activate', (event) => {
     event.waitUntil(
-        clients.claim()
+        caches.keys().then(keys => {
+            return Promise.all(
+                keys.map(key => {
+                    return caches.delete(key);
+                })
+            );
+        }).then(() => {
+            clients.claim();
+        })
     );
 });
 
 self.addEventListener('fetch', (event) => {
     event.respondWith(
-        fetch(event.request)
+        fetch(event.request).catch(error => {
+            console.error('Fetch failed:', error);
+            throw error;
+        })
     );
 });
