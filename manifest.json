@@ -1,0 +1,17 @@
+{
+    "name": "Project Portfolio",
+    "short_name": "Portfolio",
+    "description": "Professional Project Portfolio",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#2c3e50",
+    "icons": [
+        {
+            "src": "https://cdn-icons-png.flaticon.com/512/4365/4365934.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
