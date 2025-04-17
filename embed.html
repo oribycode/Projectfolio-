@@ -1,13 +1,18 @@
 <style>
-  .responsive-iframe {
+  .iframe-wrapper {
+    max-width: 100%;
+    height: 90vh;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .iframe-wrapper iframe {
     width: 100%;
-    height: 100vh;
-    max-width: 480px;
+    height: 100%;
     border: none;
   }
 </style>
 
-<iframe src="https://raindrop.io/oribycode/oribyteam-54069450" 
-        class="responsive-iframe" 
-        allowfullscreen>
-</iframe>
+<div class="iframe-wrapper">
+  <iframe src="https://raindrop.io/oribycode/oribyteam-54069450" allowfullscreen></iframe>
+</div>
